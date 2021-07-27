@@ -8,29 +8,147 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style/main.css">
-    <title>gregslist-node</title>
+    <title>gregslist-API</title>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-dark navbar-expand bg-dark text-light">
+        <nav class="navbar navbar-light navbar-expand bg-secondary text-light">
             <a class="navbar-brand" href="#">
                 <img src="assets/img/logo.png" width="45" height="45" alt="" loading="lazy">
-                <span class="ml-2">gregslist-node</span>
+                <span class="ml-2">SUPER Extended Gregslist</span>
             </a>
         </nav>
     </header>
-    <main>
-        <div id="app"></div>
-    </main>
-    <footer class="container-fluid bg-dark text-light">
-        <div class="row text-center">
-            <div class="col">
-                <p><small>Made with 💖 by Codeworks</small></p>
+    <main class="container">
+        <div class="row">
+            <div class="col mt-5">
+                <!-- This is the car forms-->
+                <form class="d-flex" onsubmit="app.carsController.createCar()">
+                    <div class="form-group">
+                        <label for="make">Make</label>
+                        <input type="text" name="make" id="make" class="form-control" placeholder="Make..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input type="text" name="model" id="model" class="form-control" placeholder="Model..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <input type="number" name="year" id="year" class="form-control" placeholder="Year..." required
+                            min="1950" max="2021">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" id="price" class="form-control" placeholder="Price..."
+                            required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="imgUrl">Image Url</label>
+                        <input type="text" name="imgUrl" id="imgUrl" class="form-control" placeholder="Url...">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="description" class="form-control"
+                            placeholder="Description..." maxlength="240">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-outline-success">Add</button>
+                    </div>
+                </form>
             </div>
         </div>
+        <div class="row" id="cars"></div>
+        <div class="row">
+            <div class="col mt-5">
+                <!-- This is the house forms-->
+                <form class="d-flex" onsubmit="app.housesController.createHouse(event)">
+                    <div class="form-group">
+                        <label for="bedrooms">Bedrooms</label>
+                        <input type="number" name="bedrooms" id="bedrooms" class="form-control"
+                            placeholder="Bedrooms..." required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="bathrooms">Bathrooms</label>
+                        <input type="number" name="bathrooms" id="bathrooms" class="form-control"
+                            placeholder="Bathrooms..." required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="levels">Levels</label>
+                        <input type="number" name="levels" id="levels" class="form-control" placeholder="Levels..."
+                            required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" name="price" id="price" class="form-control" placeholder="Price..."
+                            required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <input type="number" name="year" id="year" class="form-control" placeholder="Year..." required
+                            min="1800">
+                    </div>
+                    <div class="form-group">
+                        <label for="imgUrl">Image Url</label>
+                        <input type="text" name="imgUrl" id="imgUrl" class="form-control" placeholder="Url...">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="description" class="form-control"
+                            placeholder="Description..." maxlength="240">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-outline-success">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="houses"></div>
+        <div class="row">
+            <div class="col mt-5">
+                <!-- This is the job forms-->
+                <form class="d-flex" onsubmit="app.jobsController.createJob(event)">
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" name="company" id="company" class="form-control" placeholder="Company..."
+                            required maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title</label>
+                        <input type="text" name="jobTitle" id="jobTitle" class="form-control" placeholder="Job Title..."
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">Hours</label>
+                        <input type="number" name="hours" id="hours" class="form-control" placeholder="Hours..."
+                            required maxlength="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="rate">Rate</label>
+                        <input type="number" name="rate" id="rate" class="form-control" placeholder="Rate..." required
+                            maxlength="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" name="description" id="description" class="form-control"
+                            placeholder="Description..." maxlength="240">
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-outline-success">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="jobs"></div>
+    </main>
+    <footer class="bg-dark text-light">
+        <div class="text-center">
+            <p><small>Made with love by Jonathan</small></p>
+        </div>
     </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="app/main.js" type="module"></script>
 </body>
 
