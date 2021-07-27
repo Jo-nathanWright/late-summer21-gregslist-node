@@ -8,6 +8,7 @@ export class HousesController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getById)
       .post('', this.create)
+      .put('/:id', this.bid)
       .delete('/:id', this.destroy)
   }
 
@@ -50,6 +51,22 @@ export class HousesController extends BaseController {
   async create(req, res, next) {
     try {
       const house = await housesService.create(req.body)
+      res.send(house)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+   * Modify's Houses Price
+   * @param {import("express").Request} req
+   * @param {import("express").Response} res
+   * @param {import("express").NextFunction} next
+   */
+  async bid(req, res, next) {
+    try {
+      const bid = { price: req.body.price, id: req.params.id }
+      const house = await housesService.bid(bid)
       res.send(house)
     } catch (error) {
       next(error)

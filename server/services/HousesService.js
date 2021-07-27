@@ -20,6 +20,15 @@ class HousesService {
     return house
   }
 
+  async bid(body) {
+    let house = await this.getById(body.id)
+    if (house.price > body.price) {
+      throw new BadRequest('You can only increase Bids')
+    }
+    house = await dbContext.House.findByIdAndUpdate(body.id, body, { new: true, runValidators: true })
+    return house
+  }
+
   async destroy(id) {
     const house = await dbContext.House.findByIdAndDelete(id)
     if (!house) {
