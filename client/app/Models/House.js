@@ -6,7 +6,7 @@ export default class House {
     this.bathrooms = bathrooms
     this.levels = levels
     this.price = price
-    this.imgUrl = imgUrl || '//placehold.it/200x200'
+    this.imgUrl = imgUrl
     this.description = description || 'No description provided'
   }
 

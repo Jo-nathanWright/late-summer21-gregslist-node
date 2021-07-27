@@ -9,7 +9,7 @@ const House = new Schema(
     levels: { type: Number, required: true },
     price: { type: Number, required: true },
     description: { type: String, default: 'No Description Provided' },
-    imgURL: { type: String, default: 'https://placehold.it/200x200' }
+    imgUrl: { type: String, default: 'https://placehold.it/200x200' }
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )
