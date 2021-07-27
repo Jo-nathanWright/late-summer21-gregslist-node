@@ -3,7 +3,7 @@ import { BadRequest } from '../utils/Errors'
 
 class CarsService {
   async getAll(query = {}) {
-    const cars = await dbContext.Cars.find(query)
+    const cars = dbContext.Cars.find(query)
     return cars
   }
 
