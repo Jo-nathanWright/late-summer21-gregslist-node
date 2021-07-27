@@ -19,6 +19,14 @@ class HousesService {
     const house = await dbContext.House.create(body)
     return house
   }
+
+  async destroy(id) {
+    const house = await dbContext.House.findByIdAndDelete(id)
+    if (!house) {
+      throw new BadRequest('Invalid ID')
+    }
+    return house
+  }
 }
 
 export const housesService = new HousesService()

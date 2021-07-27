@@ -8,6 +8,7 @@ export class HousesController extends BaseController {
       .get('', this.getAll)
       .get('/:id', this.getById)
       .post('', this.create)
+      .delete('/:id', this.destroy)
   }
 
   /**
@@ -50,6 +51,21 @@ export class HousesController extends BaseController {
     try {
       const house = await housesService.create(req.body)
       res.send(house)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  /**
+   * Deletes Houses
+   * @param {import("express").Request} req
+   * @param {import("express").Response} res
+   * @param {import("express").NextFunction} next
+   */
+  async destroy(req, res, next) {
+    try {
+      await housesService.destroy(req.params.id)
+      res.send({ message: 'Successfully Deleted House' })
     } catch (error) {
       next(error)
     }
